@@ -1,0 +1,66 @@
+version: '3.9'
+
+networks:
+  slotegrator_backend:
+    driver: bridge
+
+services:
+  php-fpm-8:
+    build:
+      context: ./php8
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./..:/var/www/html
+    networks:
+      - slotegrator_backend
+    ports:
+      - "${PHP_PORT}:9000"
+    depends_on:
+      - mysql
+      - rabbitmq
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./../:/var/www
+      - ./volumes/nginx/logs:/var/log/nginx
+      - ./volumes/nginx/ssl:/etc/nginx/ssl
+    networks:
+      - slotegrator_backend
+    ports:
+      - 80:80
+    depends_on:
+      - php-fpm-8
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./volumes/mysql:/var/lib/mysql
+    networks:
+      - slotegrator_backend
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+
+  rabbitmq:
+    image: rabbitmq:3.8.9-management
+    restart: always
+    volumes:
+      - ./volumes/rabbitmq:/var/lib/rabbitmq
+    networks:
+      - slotegrator_backend
+    ports:
+      - "${RABBIT_MQ_PORT_1}:5672"
+      - "${RABBIT_MQ_PORT_2}:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"

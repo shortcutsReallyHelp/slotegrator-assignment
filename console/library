@@ -1,0 +1,48 @@
+#!/bin/sh
+
+executeAgainstContainer() {
+    CONTAINER=$1
+    COMMAND=$2
+    docker exec -it $CONTAINER $COMMAND
+}
+
+runInitialInstallSteps() {
+  PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
+
+#  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer install"
+#  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer dump-autoload"
+#  run migrations
+#  run seeds
+
+}
+
+runDestroySteps() {
+  down
+  sudo rm -rf docker/volumes
+}
+
+isTestEnvironment() {
+  TEST_CONTAINERS=$(docker ps | grep "test")
+
+  if [ -z TEST_CONTAINERS ]; then
+    return 0
+  fi
+
+  return 1
+}
+
+up() {
+  if isTestEnvironment; then
+    docker-compose -f docker/docker-compose.test.yml --env-file .env up -d
+  else
+    docker-compose -f docker/docker-compose.yml --env-file .env up -d
+  fi
+}
+
+down() {
+  if isTestEnvironment; then
+    docker-compose -f docker/docker-compose.test.yml --env-file .env down
+  else
+    docker-compose -f docker/docker-compose.yml --env-file .env down
+  fi
+}

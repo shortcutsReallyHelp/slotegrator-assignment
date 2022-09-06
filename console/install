@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. console/library
+
+# receive argument env (dev, test)
+if [ -z "$1" ]; then
+    echo "No argument supplied"
+    exit 1
+fi
+
+ENV=$1
+
+# run ../docker/docker-compose if ENV is dev
+if [ "$ENV" = "dev" ]; then
+    echo "Running docker-compose"
+    cp .env.example .env
+
+    up
+    runInitialInstallSteps
+fi
+
+#if [ "$ENV" = "test" ]; then
+##  first stop all containers
+#fi
