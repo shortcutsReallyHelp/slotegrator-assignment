@@ -18,6 +18,21 @@
     "league/container": "^4.2",
     "doctrine/orm": "^2.13",
     "doctrine/migrations": "^3.5",
-    "symfony/validator": "^5.4"
+    "symfony/validator": "^5.4",
+    "laminas/laminas-diactoros": "^2.17",
+    "laminas/laminas-httphandlerrunner": "^2.1"
+  },
+  "autoload": {
+    "files": [
+      "backend/src/helpers.php"
+    ],
+    "psr-4": {
+      "Slotegrator\\": "backend/src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   }
 }
