@@ -1,2 +1,4 @@
 .env
 docker/volumes
+vendor
+node_modules

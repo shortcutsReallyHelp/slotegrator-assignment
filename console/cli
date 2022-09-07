@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. console/library
+
+# if no argument is supplied, connect to php-fpm-8 container else connect to the container supplied as argument
+
+if [ -z "$1" ]; then
+    connectToTerminal
+else
+    connectToTerminalAndRunCommand $@
+fi

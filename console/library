@@ -9,8 +9,8 @@ executeAgainstContainer() {
 runInitialInstallSteps() {
   PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
 
-#  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer install"
-#  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer dump-autoload"
+  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer install"
+  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer dump-autoload"
 #  run migrations
 #  run seeds
 
@@ -33,9 +33,9 @@ isTestEnvironment() {
 
 up() {
   if isTestEnvironment; then
-    docker-compose -f docker/docker-compose.test.yml --env-file .env up -d
+    docker-compose -f docker/docker-compose.test.yml --env-file .env up -d $1
   else
-    docker-compose -f docker/docker-compose.yml --env-file .env up -d
+    docker-compose -f docker/docker-compose.yml --env-file .env up -d $1
   fi
 }
 
@@ -45,4 +45,14 @@ down() {
   else
     docker-compose -f docker/docker-compose.yml --env-file .env down
   fi
+}
+
+connectToTerminal() {
+  PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
+  docker exec -it $PHP_FPM_8_CONTAINER_ID bash
+}
+
+connectToTerminalAndRunCommand() {
+  PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
+  docker exec -it $PHP_FPM_8_CONTAINER_ID $@
 }

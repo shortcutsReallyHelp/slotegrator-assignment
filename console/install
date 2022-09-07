@@ -10,12 +10,11 @@ fi
 
 ENV=$1
 
-# run ../docker/docker-compose if ENV is dev
 if [ "$ENV" = "dev" ]; then
     echo "Running docker-compose"
     cp .env.example .env
 
-    up
+    up "--build"
     runInitialInstallSteps
 fi
 
