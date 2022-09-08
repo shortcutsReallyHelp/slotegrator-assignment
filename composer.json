@@ -20,12 +20,14 @@
     "doctrine/migrations": "^3.5",
     "symfony/validator": "^5.4",
     "laminas/laminas-diactoros": "^2.17",
-    "laminas/laminas-httphandlerrunner": "^2.1"
+    "laminas/laminas-httphandlerrunner": "^2.1",
+    "symfony/translation": "^5.4",
+    "doctrine/annotations": "^1.13",
+    "symfony/cache": "^5.4",
+    "symfony/property-access": "^5.4",
+    "vlucas/phpdotenv": "^5.4"
   },
   "autoload": {
-    "files": [
-      "backend/src/helpers.php"
-    ],
     "psr-4": {
       "Slotegrator\\": "backend/src/"
     }

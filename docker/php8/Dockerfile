@@ -1,6 +1,8 @@
 # describe the image for php8 with mysql
 FROM php:8.0.0-fpm
 
+WORKDIR /var/www
+
 RUN apt update
 RUN apt install -y git zip unzip
 

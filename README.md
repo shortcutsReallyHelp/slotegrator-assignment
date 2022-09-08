@@ -4,20 +4,24 @@
 - [X] Prepare docker for two environments: dev and test
 - [X] Decide which libraries to use
 - [X] Decide architectural approach and directory structures
-- [ ] Prepare bootstrap
-- [ ] Write first controller action hello world with POST validation
+- [X] Prepare bootstrap
+
 
 ## Development todos
-- [ ] Sign up
-- [ ] Authentication
-- [ ] Settings
-- [ ] Get random gift
-- [ ] Send money to users bank accounts
-- [ ] Frontend
-- [ ] Seeders and install command
-- [ ] Load testing and fakers
-- [ ] code sniffer and phpstan
-- [ ] Unit Tests
+- [ ] Sign up (30m)
+- [ ] Authentication (30m)
+- [ ] Settings (30m)
+- [ ] Get random gift (2h)
+- [ ] Send money to users bank accounts (30m)
+- [ ] Unit Tests (2h)
+- [ ] code sniffer and phpstan (30m)
+- [ ] Frontend (2h)
+
+- [ ] Seeders and install command (30m)
+- [ ] Load testing and fakers (2h)
+- [ ] Refactor Core (1h)
+- [ ] Refactor Application (1h)
+- [ ] Documentation (30m)
 
 ## Libraries
 - [X] router
@@ -30,3 +34,78 @@
 - [X] Event dispatcher
 - [X] RabbitMQ
 - [X] Redis
+
+
+
+
+users
+- id
+- email
+- password
+- created_at
+- updated_at
+
+requisites
+- id
+- data (json)
+
+settings
+- id
+- key
+- type
+- value_int
+- value_range_int_min
+- value_range_int_max
+- created_at
+- updated_at
+
+gifts
+- id
+- name
+- created_at
+- updated_at
+
+gift_balances
+- id
+- gift_id
+- balance
+- created_at
+- updated_at
+
+gift_transactions
+- id
+- gift_id
+- raffle_id
+- amount
+- gift_balance
+- created_at
+- updated_at
+
+raffles
+- id
+- user_id
+- type
+- gift_id
+- gift_name
+- gift_amount
+- money_amount
+- money_transaction_id
+- bonus_amount
+- created_at
+- updated_at
+
+money_transactions
+- id
+- user_id
+- amount
+- balance
+- created_at
+- updated_at
+
+bonus_transactions
+- id
+- user_id
+- amount
+- balance
+- created_at
+- updated_at

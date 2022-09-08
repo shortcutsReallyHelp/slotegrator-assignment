@@ -4,6 +4,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Slotegrator\Http\Starter;
 
+const BASE_DIR = __DIR__ . '/..';
+
 $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER, $_GET, $_POST
 );

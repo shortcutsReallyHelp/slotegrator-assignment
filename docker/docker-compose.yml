@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./..:/var/www/html
+      - ./..:/var/www
     networks:
       - slotegrator_backend
     ports:

@@ -3,7 +3,10 @@
 namespace Slotegrator\Http\Routes;
 
 use League\Container\Container;
+use League\Route\RouteGroup;
 use League\Route\Router;
+use Slotegrator\Http\Controllers\SignupController;
+use Slotegrator\Http\Middlewares\BodyParserMiddleware;
 
 class ApiRoutesProvider implements RoutesProviderInterface
 {
@@ -14,12 +17,23 @@ class ApiRoutesProvider implements RoutesProviderInterface
      */
     public function boot(Router $router, Container $container): Router
     {
-        $router->get('/api', function () {
-            return 'Hello world!';
-        });
+        $router->group('/api', function (RouteGroup $routeGroup) use ($container) {
+            $routeGroup->post('signup', $this->resolveController($container, SignupController::class, 'signup'));
+        })->middleware($container->get(BodyParserMiddleware::class));
 
         return $router;
     }
 
-
+    /**
+     * @param Container $container
+     * @param string $className
+     * @param string $methodName
+     * @return \Closure
+     */
+    private function resolveController(Container $container, string $className, string $methodName): \Closure
+    {
+        return function (...$args) use ($container, $className, $methodName) {
+            return ($container->get($className))->$methodName(...$args);
+        };
+    }
 }

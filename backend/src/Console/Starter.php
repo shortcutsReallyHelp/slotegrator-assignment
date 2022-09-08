@@ -1,23 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Slotegrator\Http;
+namespace Slotegrator\Console;
 
 use League\Container\Container;
-use League\Route\Router;
-use Slotegrator\DependencyProviders\BodyParserDependencyProvider;
 use Slotegrator\DependencyProviders\ConfigDependencyProvider;
-use Slotegrator\DependencyProviders\ControllerDependencyProvider;
 use Slotegrator\DependencyProviders\DependencyProviderInterface;
+use Slotegrator\DependencyProviders\ConsoleDependencyProvider;
+use Slotegrator\DependencyProviders\DoctrineDependencyProvider;
+use Slotegrator\DependencyProviders\DoctrineMigrationDependencyProvider;
 use Slotegrator\DependencyProviders\DotEnvDependencyProvider;
-use Slotegrator\DependencyProviders\RequestDependencyProvider;
 use Slotegrator\DependencyProviders\TranslatorDependencyProvider;
 use Slotegrator\DependencyProviders\ValidatorDependencyProvider;
-use Slotegrator\Http\Routes\ApiRoutesProvider;
-use Slotegrator\Http\Routes\RoutesProviderInterface;
 
 class Starter
 {
-    public const ROUTER = 'router';
 
     /**
      * @var string[]
@@ -26,17 +22,10 @@ class Starter
         DotEnvDependencyProvider::class,
         ConfigDependencyProvider::class,
         ValidatorDependencyProvider::class,
-        ControllerDependencyProvider::class,
         TranslatorDependencyProvider::class,
-        RequestDependencyProvider::class,
-        BodyParserDependencyProvider::class,
-    ];
-
-    /**
-     * @var array|string[]
-     */
-    private array $routesProviders = [
-        ApiRoutesProvider::class,
+        ConsoleDependencyProvider::class,
+        DoctrineMigrationDependencyProvider::class,
+        DoctrineDependencyProvider::class,
     ];
 
     /**
@@ -46,7 +35,6 @@ class Starter
     {
         $container = new Container();
         $container = $this->bootDependencyProviders($container);
-        $container = $this->bootRoutes($container);
 
         return $container;
     }
@@ -64,27 +52,6 @@ class Starter
             $dependencyProvider = new $dependencyProviderClassName;
             $container = $dependencyProvider->boot($container);
         }
-        return $container;
-    }
-
-    /**
-     * @param Container $container
-     * @return Container
-     */
-    private function bootRoutes(Container $container): Container
-    {
-        //put to RouterDependencyProvider
-        $container->add(self::ROUTER, function () use ($container) {
-            $router = new Router();
-            foreach ($this->routesProviders as $routesProviderClassName) {
-                /**
-                 * @var RoutesProviderInterface $routesProvider
-                 */
-                $routesProvider = new $routesProviderClassName;
-                $router = $routesProvider->boot($router, $container);
-            }
-            return $router;
-        });
         return $container;
     }
 }
