@@ -2,7 +2,7 @@
 
 namespace Slotegrator\Application\I18n;
 
-use Slotegrator\Domain\I18n\I18nInterface;
+use Slotegrator\Business\I18n\I18nInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class I18n implements I18nInterface

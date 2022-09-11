@@ -11,9 +11,9 @@ runInitialInstallSteps() {
 
   executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer install"
   executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "composer dump-autoload"
-#  run migrations
+  sleep 20s
+  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "php backend/console/console.php --no-interaction migrations:migrate"
 #  run seeds
-
 }
 
 runDestroySteps() {

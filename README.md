@@ -10,18 +10,21 @@
 ## Development todos
 - [ ] Sign up (30m)
 - [ ] Authentication (30m)
-- [ ] Settings (30m)
 - [ ] Get random gift (2h)
 - [ ] Send money to users bank accounts (30m)
 - [ ] Unit Tests (2h)
-- [ ] code sniffer and phpstan (30m)
-- [ ] Frontend (2h)
-
 - [ ] Seeders and install command (30m)
 - [ ] Load testing and fakers (2h)
+- [ ] Settings (30m) (stub first)
+
+- [ ] foreign keys
+
+- [ ] code sniffer and phpstan (30m)
 - [ ] Refactor Core (1h)
 - [ ] Refactor Application (1h)
-- [ ] Documentation (30m)
+
+
+- [ ] Frontend (2h)
 
 ## Libraries
 - [X] router
@@ -47,6 +50,7 @@ users
 
 requisites
 - id
+- user_id
 - data (json)
 
 settings
@@ -62,12 +66,6 @@ settings
 gifts
 - id
 - name
-- created_at
-- updated_at
-
-gift_balances
-- id
-- gift_id
 - balance
 - created_at
 - updated_at
@@ -96,7 +94,7 @@ raffles
 
 money_transactions
 - id
-- user_id
+- ?user_id
 - amount
 - balance
 - created_at

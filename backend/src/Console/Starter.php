@@ -7,7 +7,6 @@ use Slotegrator\DependencyProviders\ConfigDependencyProvider;
 use Slotegrator\DependencyProviders\DependencyProviderInterface;
 use Slotegrator\DependencyProviders\ConsoleDependencyProvider;
 use Slotegrator\DependencyProviders\DoctrineDependencyProvider;
-use Slotegrator\DependencyProviders\DoctrineMigrationDependencyProvider;
 use Slotegrator\DependencyProviders\DotEnvDependencyProvider;
 use Slotegrator\DependencyProviders\TranslatorDependencyProvider;
 use Slotegrator\DependencyProviders\ValidatorDependencyProvider;
@@ -24,7 +23,6 @@ class Starter
         ValidatorDependencyProvider::class,
         TranslatorDependencyProvider::class,
         ConsoleDependencyProvider::class,
-        DoctrineMigrationDependencyProvider::class,
         DoctrineDependencyProvider::class,
     ];
 

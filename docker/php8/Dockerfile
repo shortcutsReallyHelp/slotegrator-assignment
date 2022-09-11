@@ -6,8 +6,8 @@ WORKDIR /var/www
 RUN apt update
 RUN apt install -y git zip unzip
 
-# install the PHP extensions we need
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+# install pdo mysql
+RUN docker-php-ext-install pdo_mysql
 
 RUN pecl install -o -f redis && docker-php-ext-enable redis
 
