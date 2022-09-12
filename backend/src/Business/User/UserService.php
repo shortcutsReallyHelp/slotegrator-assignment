@@ -2,6 +2,7 @@
 
 namespace Slotegrator\Business\User;
 
+use Slotegrator\Business\Password\PasswordServiceInterface;
 use Slotegrator\Business\User\DTO\CreateUserDTO;
 use Slotegrator\Business\User\Entities\User;
 use Slotegrator\Business\User\UserCreator\UserCreatorInterface;

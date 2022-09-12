@@ -9,7 +9,9 @@ use Doctrine\Migrations\Configuration\Migration\ExistingConfiguration;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMSetup;
+use Doctrine\Persistence\ManagerRegistry;
 use League\Config\Configuration;
 use League\Container\Container;
 
@@ -23,7 +25,7 @@ class DoctrineDependencyProvider implements DependencyProviderInterface
      */
     public function boot(Container $container): Container
     {
-        $container->add(EntityManager::class, function () use ($container) {
+        $container->addShared(EntityManager::class, function () use ($container) {
             /**
              * @var Configuration $configuration
              */
@@ -40,7 +42,7 @@ class DoctrineDependencyProvider implements DependencyProviderInterface
             return EntityManager::create($configuration->get('database'), $config);
         });
 
-        $container->add(self::DOCTRINE_DEPENDENCY_FACTORY, function () use ($container) {
+        $container->addShared(self::DOCTRINE_DEPENDENCY_FACTORY, function () use ($container) {
             $configuration = new \Doctrine\Migrations\Configuration\Configuration();
 
             $configuration->addMigrationsDirectory('Slotegrator\Migrations', BASE_DIR . '/src/Migrations');

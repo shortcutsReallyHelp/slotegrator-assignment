@@ -8,7 +8,7 @@ interface UserEntityManagerInterface
 {
     /**
      * @param User $user
-     * @return User
+     * @return void
      */
-    public function create(User $user): User;
+    public function create(User $user): void;
 }

@@ -3,6 +3,7 @@
 namespace Slotegrator\DependencyProviders;
 
 use League\Container\Container;
+use Slotegrator\Application\SignUp\CommandHandler\SignUpCommandHandlerInterface;
 use Slotegrator\Http\Controllers\SignupController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -16,7 +17,7 @@ class ControllerDependencyProvider implements DependencyProviderInterface
     public function boot(Container $container): Container
     {
         $container->add(SignupController::class, function () use ($container) {
-            return new SignupController(...$this->getBasicControllerArguments($container));
+            return new SignupController($container->get(SignUpCommandHandlerInterface::class), ...$this->getBasicControllerArguments($container));
         });
         return $container;
     }

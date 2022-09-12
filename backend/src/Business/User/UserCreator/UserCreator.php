@@ -2,6 +2,7 @@
 
 namespace Slotegrator\Business\User\UserCreator;
 
+use Slotegrator\Business\Password\PasswordServiceInterface;
 use Slotegrator\Business\User\DTO\CreateUserDTO;
 use Slotegrator\Business\Common\Exceptions\BusinessException;
 use Slotegrator\Business\I18n\I18nInterface;
@@ -15,7 +16,8 @@ class UserCreator implements UserCreatorInterface
     public function __construct(
         private UserReaderInterface $userReader,
         private UserEntityManagerInterface $userEntityManager,
-        private I18nInterface $i18n
+        private I18nInterface $i18n,
+        private PasswordServiceInterface $passwordService
     ) {}
 
     /**
@@ -30,10 +32,12 @@ class UserCreator implements UserCreatorInterface
         if ($userDTO) {
             throw new BusinessException($this->i18n->translate(MessagesInterface::USER_ALREADY_EXISTS));
         }
-        return $this->userEntityManager->create(
+        $this->userEntityManager->create(
             (new User())
                 ->setEmail($createUserDTO->getEmail())
-                ->setPassword($createUserDTO->getPassword())
+                ->setPassword($this->passwordService->hash($createUserDTO->getPassword()))
         );
+
+        return $this->userReader->findByEmail($createUserDTO->getEmail());
     }
 }

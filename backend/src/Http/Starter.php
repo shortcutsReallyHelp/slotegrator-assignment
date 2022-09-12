@@ -4,13 +4,17 @@ namespace Slotegrator\Http;
 
 use League\Container\Container;
 use League\Route\Router;
+use Slotegrator\DependencyProviders\AuthServiceDependencyProvider;
 use Slotegrator\DependencyProviders\BodyParserDependencyProvider;
 use Slotegrator\DependencyProviders\ConfigDependencyProvider;
 use Slotegrator\DependencyProviders\ControllerDependencyProvider;
 use Slotegrator\DependencyProviders\DependencyProviderInterface;
+use Slotegrator\DependencyProviders\DoctrineDependencyProvider;
 use Slotegrator\DependencyProviders\DotEnvDependencyProvider;
 use Slotegrator\DependencyProviders\RequestDependencyProvider;
+use Slotegrator\DependencyProviders\ServiceDependencyProvider;
 use Slotegrator\DependencyProviders\TranslatorDependencyProvider;
+use Slotegrator\DependencyProviders\UserServiceDependencyProvider;
 use Slotegrator\DependencyProviders\ValidatorDependencyProvider;
 use Slotegrator\Http\Routes\ApiRoutesProvider;
 use Slotegrator\Http\Routes\RoutesProviderInterface;
@@ -30,6 +34,10 @@ class Starter
         TranslatorDependencyProvider::class,
         RequestDependencyProvider::class,
         BodyParserDependencyProvider::class,
+        DoctrineDependencyProvider::class,
+        ServiceDependencyProvider::class,
+        AuthServiceDependencyProvider::class,
+        UserServiceDependencyProvider::class,
     ];
 
     /**
