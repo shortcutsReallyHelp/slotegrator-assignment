@@ -35,6 +35,11 @@ console/cli php backend/console/console.php payments:process 10
 console/cli vendor/bin/phpunit backend/tests
 ```
 
+## Run load tests
+```bash
+console/runLoadTests
+```
+
 ## Preparation todos
 - [X] Prepare docker for two environments: dev and test
 - [X] Decide which libraries to use
@@ -50,9 +55,9 @@ console/cli vendor/bin/phpunit backend/tests
 - [X] Bonus
 - [X] Get random
 - [X] Send money to users bank accounts
-- [ ] Unit Tests (only raffle and only stubs without fakers)
+- [X] Unit Tests (only raffle and only stubs without fakers)
 - [X] Seeders and install command
-- [ ] Load testing and fakers
+- [X] Load testing and fakers
 
 ## What I would do if I had more time
 - [ ] Add money to programms balance (dont have enough time to do it, instead money will be added to programms balance via seeders)

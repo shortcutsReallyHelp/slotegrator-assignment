@@ -56,3 +56,9 @@ connectToTerminalAndRunCommand() {
   PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
   docker exec -it $PHP_FPM_8_CONTAINER_ID $@
 }
+
+runLoadTests() {
+  PHP_FPM_8_CONTAINER_ID=$(docker ps -qf "name=php-fpm-8")
+  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "php backend/console/console.php generate:payload"
+  executeAgainstContainer $PHP_FPM_8_CONTAINER_ID "ddosify -config payload.json"
+}

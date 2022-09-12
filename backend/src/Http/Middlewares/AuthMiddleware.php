@@ -2,6 +2,7 @@
 
 namespace Slotegrator\Http\Middlewares;
 
+use Laminas\Diactoros\Response\JsonResponse;
 use League\Route\Http\Exception\UnauthorizedException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,14 +23,14 @@ class AuthMiddleware implements MiddlewareInterface
     {
         $token = $request->getHeaderLine('Authorization');
         if (empty($token)) {
-            throw new UnauthorizedException();
+            return new JsonResponse(['message' => 'Unauthorized'], 401);
         }
 
         $token = str_replace('Bearer ', '', $token);
         $user = $this->authService->getUserByToken($token);
 
         if (empty($user)) {
-            throw new UnauthorizedException();
+            return new JsonResponse(['message' => 'Unauthorized'], 401);
         }
 
         $request = $request->withAttribute('user', $user);

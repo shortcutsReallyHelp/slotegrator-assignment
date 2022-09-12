@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Slotegrator\DependencyProviders;
 
@@ -14,8 +15,11 @@ use Doctrine\Migrations\Tools\Console\Command\StatusCommand;
 use Doctrine\Migrations\Tools\Console\Command\SyncMetadataCommand;
 use Doctrine\Migrations\Tools\Console\Command\UpToDateCommand;
 use Doctrine\Migrations\Tools\Console\Command\VersionCommand;
+use Doctrine\ORM\EntityManager;
 use League\Container\Container;
+use Slotegrator\Business\Auth\AuthServiceInterface;
 use Slotegrator\Business\MoneyTransaction\MoneyTransactionServiceInterface;
+use Slotegrator\Console\Commands\GenerateLoadTestPayload;
 use Slotegrator\Console\Commands\ProcessPayments;
 use Slotegrator\Console\Commands\Seed;
 
@@ -47,6 +51,10 @@ class ConsoleDependencyProvider implements DependencyProviderInterface
 
                 new ProcessPayments($container->get(MoneyTransactionServiceInterface::class)),
                 new Seed($container),
+                new GenerateLoadTestPayload(
+                    $container->get(AuthServiceInterface::class),
+                    $container->get(EntityManager::class),
+                ),
             ];
         });
 
