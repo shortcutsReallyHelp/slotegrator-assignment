@@ -4,15 +4,19 @@ namespace Slotegrator\DependencyProviders;
 
 use League\Config\Configuration;
 use League\Container\Container;
+use Slotegrator\Application\SignIn\CommandHandler\SignInCommandHandler;
+use Slotegrator\Application\SignIn\CommandHandler\SignInCommandHandlerInterface;
 use Slotegrator\Business\Auth\AuthService;
 use Slotegrator\Business\Auth\AuthServiceInterface;
 use Slotegrator\Business\Auth\TokenIssuer\TokenIssuer;
 use Slotegrator\Business\Auth\TokenIssuer\TokenIssuerInterface;
 use Slotegrator\Business\Auth\UserReader\UserReader;
 use Slotegrator\Business\Auth\UserReader\UserReaderInterface;
+use Slotegrator\Business\I18n\I18nInterface;
 use Slotegrator\Business\JWT\JwtServiceInterface;
 use Slotegrator\Business\Password\PasswordServiceInterface;
 use Slotegrator\Business\User\UserServiceInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AuthServiceDependencyProvider implements DependencyProviderInterface
 {
@@ -43,6 +47,12 @@ class AuthServiceDependencyProvider implements DependencyProviderInterface
             return new UserReader(
                 $container->get(UserServiceInterface::class),
                 $container->get(JwtServiceInterface::class)
+            );
+        });
+        $container->add(SignInCommandHandlerInterface::class, function () use ($container) {
+            return new SignInCommandHandler(
+                $container->get(AuthServiceInterface::class),
+                $container->get(I18nInterface::class)
             );
         });
         return $container;

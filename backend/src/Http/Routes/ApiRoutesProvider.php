@@ -5,6 +5,7 @@ namespace Slotegrator\Http\Routes;
 use League\Container\Container;
 use League\Route\RouteGroup;
 use League\Route\Router;
+use Slotegrator\Http\Controllers\SignInController;
 use Slotegrator\Http\Controllers\SignupController;
 use Slotegrator\Http\Middlewares\BodyParserMiddleware;
 
@@ -19,6 +20,7 @@ class ApiRoutesProvider implements RoutesProviderInterface
     {
         $router->group('/api', function (RouteGroup $routeGroup) use ($container) {
             $routeGroup->post('signup', $this->resolveController($container, SignupController::class, 'signup'));
+            $routeGroup->post('signin', $this->resolveController($container, SignInController::class, 'signIn'));
         })->middleware($container->get(BodyParserMiddleware::class));
 
         return $router;

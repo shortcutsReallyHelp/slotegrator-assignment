@@ -2,7 +2,7 @@
 
 namespace Slotegrator\Application\SignIn\CommandHandler;
 
-use Slotegrator\Application\Auth\MessagesInterface;
+use Slotegrator\Application\SignIn\Constants\MessagesInterface;
 use Slotegrator\Application\SignIn\Command\SignInCommand;
 use Slotegrator\Application\SignIn\DTO\SignInResult;
 use Slotegrator\Business\Auth\AuthServiceInterface;

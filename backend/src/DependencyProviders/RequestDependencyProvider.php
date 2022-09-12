@@ -3,6 +3,7 @@
 namespace Slotegrator\DependencyProviders;
 
 use League\Container\Container;
+use Slotegrator\Http\Requests\SignInRequest;
 use Slotegrator\Http\Requests\SignUpRequest;
 
 class RequestDependencyProvider implements DependencyProviderInterface
@@ -15,6 +16,9 @@ class RequestDependencyProvider implements DependencyProviderInterface
     {
         $container->add(SignUpRequest::class, function () use ($container) {
             return new SignUpRequest();
+        });
+        $container->add(SignInRequest::class, function () use ($container) {
+            return new SignInRequest();
         });
         return $container;
     }
