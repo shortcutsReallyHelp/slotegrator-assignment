@@ -11,6 +11,7 @@ use Slotegrator\DependencyProviders\ControllerDependencyProvider;
 use Slotegrator\DependencyProviders\DependencyProviderInterface;
 use Slotegrator\DependencyProviders\DoctrineDependencyProvider;
 use Slotegrator\DependencyProviders\DotEnvDependencyProvider;
+use Slotegrator\DependencyProviders\GiftDependencyProvider;
 use Slotegrator\DependencyProviders\RequestDependencyProvider;
 use Slotegrator\DependencyProviders\ServiceDependencyProvider;
 use Slotegrator\DependencyProviders\TranslatorDependencyProvider;
@@ -38,6 +39,7 @@ class Starter
         ServiceDependencyProvider::class,
         AuthServiceDependencyProvider::class,
         UserServiceDependencyProvider::class,
+        GiftDependencyProvider::class,
     ];
 
     /**

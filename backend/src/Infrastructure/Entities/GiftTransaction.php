@@ -16,8 +16,8 @@ class GiftTransaction
     #[Column(type: 'integer'), Id, GeneratedValue]
     private int $id;
 
-    #[Column(name: 'user_id', type: 'integer')]
-    private int $userId;
+    #[Column(name: 'user_id', type: 'integer', nullable: true)]
+    private ?int $userId;
 
     #[Column(name: 'gift_id', type: 'integer')]
     private int $giftId;
@@ -47,18 +47,18 @@ class GiftTransaction
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUserId(): int
+    public function getUserId(): ?int
     {
         return $this->userId;
     }
 
     /**
-     * @param int $userId
+     * @param null|int $userId
      * @return GiftTransaction
      */
-    public function setUserId(int $userId): GiftTransaction
+    public function setUserId(?int $userId): GiftTransaction
     {
         $this->userId = $userId;
         return $this;

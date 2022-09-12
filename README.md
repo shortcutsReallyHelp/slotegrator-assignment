@@ -8,23 +8,22 @@
 
 
 ## Development todos
-- [ ] Sign up (30m)
-- [ ] Authentication (30m)
-- [ ] Get random gift (2h)
-- [ ] Send money to users bank accounts (30m)
-- [ ] Unit Tests (2h)
-- [ ] Seeders and install command (30m)
-- [ ] Load testing and fakers (2h)
-- [ ] Settings (30m) (stub first)
-
-- [ ] foreign keys
-
-- [ ] code sniffer and phpstan (30m)
-- [ ] Refactor Core (1h)
-- [ ] Refactor Application (1h)
+- [X] Sign up
+- [X] Authentication
+- [X] Gift
+- [ ] Money
+- [ ] Bonus
+- [ ] Get random 
+- [ ] Send money to users bank accounts
+- [ ] Unit Tests
+- [ ] Seeders and install command
+- [ ] Load testing and fakers
 
 
-- [ ] Frontend (2h)
+- [ ] Frontend (dont have enough time to do it, we have REST and postman collection to test)
+- [ ] Add money to programms balance (dont have enough time to do it, instead money will be added to programms balance via seeders)
+- [ ] code sniffer and phpstan (dont have enough time to do it)
+- [ ] foreign keys (dont have enough time to do it)
 
 ## Libraries
 - [X] router
@@ -33,10 +32,6 @@
 - [X] orm
 - [X] migration
 - [X] validation
-- [X] OAuth 2.0
-- [X] Event dispatcher
-- [X] RabbitMQ
-- [X] Redis
 
 
 
@@ -52,16 +47,6 @@ requisites
 - id
 - user_id
 - data (json)
-
-settings
-- id
-- key
-- type
-- value_int
-- value_range_int_min
-- value_range_int_max
-- created_at
-- updated_at
 
 gifts
 - id

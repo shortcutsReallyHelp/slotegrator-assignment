@@ -19,6 +19,27 @@ class Gift
     #[Column(type: 'string', length: 255)]
     private string $name;
 
+    #[Column(type: 'integer')]
+    private int $balance;
+
+    /**
+     * @return int
+     */
+    public function getBalance(): int
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param int $balance
+     * @return Gift
+     */
+    public function setBalance(int $balance): Gift
+    {
+        $this->balance = $balance;
+        return $this;
+    }
+
     /**
      * @return int
      */
