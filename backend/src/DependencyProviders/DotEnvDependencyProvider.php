@@ -13,7 +13,7 @@ class DotEnvDependencyProvider implements DependencyProviderInterface
      */
     public function boot(Container $container): Container
     {
-        $dotenv = Dotenv::createImmutable(BASE_DIR . '/..');
+        $dotenv = Dotenv::createImmutable(\BASE_DIR . '/..');
         $dotenv->load();
 
         return $container;

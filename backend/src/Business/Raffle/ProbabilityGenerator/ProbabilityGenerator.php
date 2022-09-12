@@ -17,7 +17,7 @@ class ProbabilityGenerator implements ProbabilityGeneratorInterface
     {
         return [
             ...$this->generateGiftProbabilities(),
-            $this->probabilityFactory->createBonusProbability(),
+            ...$this->generateBonusProbabilities(),
             ...$this->generateMoneyProbability(),
         ];
     }
@@ -42,6 +42,11 @@ class ProbabilityGenerator implements ProbabilityGeneratorInterface
         } catch (\Exception $e) {
             return [];
         }
+    }
+
+    protected function generateBonusProbabilities(): array
+    {
+        return [$this->probabilityFactory->createBonusProbability()];
     }
 
 }

@@ -87,6 +87,7 @@ class MoneyTransactionEntityManager implements MoneyTransactionEntityManagerInte
             ->andWhere('t.userId IS NOT NULL')
             ->setParameter(':isWithdrawalProcessed', false)
             ->setMaxResults($limit)
+            ->orderBy('t.id', 'DESC')
             ->getQuery()
             ->getResult();
 

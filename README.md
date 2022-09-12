@@ -25,10 +25,15 @@ console/down
 ## Connect to php container
 ```bash
 console/cli
+
 console/cli php backend/console/console.php payments:process 10
 ```
 
+## Run tests
+```bash
 
+console/cli vendor/bin/phpunit backend/tests
+```
 
 ## Preparation todos
 - [X] Prepare docker for two environments: dev and test
@@ -49,22 +54,15 @@ console/cli php backend/console/console.php payments:process 10
 - [X] Seeders and install command
 - [ ] Load testing and fakers
 
+## What I would do if I had more time
+- [ ] Add money to programms balance (dont have enough time to do it, instead money will be added to programms balance via seeders)
 - [ ] wrap with transaction, foreign keys (didn't have enough time to do it unfortunately)
 - [ ] Frontend (we have REST api and postman collection to test)
-- [ ] Add money to programms balance (dont have enough time to do it, instead money will be added to programms balance via seeders)
 - [ ] code sniffer and phpstan (dont have enough time to do it)
+- [ ] More tests
 
-## Libraries
-- [X] router
-- [X] config
-- [X] container
-- [X] orm
-- [X] migration
-- [X] validation
-
-
-
-
+## Structure of DB
+```
 users
 - id
 - email
@@ -121,3 +119,4 @@ bonus_transactions
 - balance
 - created_at
 - updated_at
+```

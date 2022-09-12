@@ -4,7 +4,7 @@ namespace Slotegrator\Business\Raffle;
 
 use Slotegrator\Business\Raffle\Entities\Raffle;
 use Slotegrator\Business\Raffle\ProbabilityGenerator\ProbabilityGeneratorInterface;
-use Slotegrator\Business\Raffle\ProbabilityGenerator\RaffleProbabilityInterface;
+use Slotegrator\Business\Raffle\RaffleProbability\RaffleProbabilityInterface;
 use Slotegrator\Business\Raffle\Randomiser\RandomiserInterface;
 use Slotegrator\Business\Raffle\Writer\RaffleWriterInterface;
 
