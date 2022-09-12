@@ -6,7 +6,8 @@ use Slotegrator\Business\Gift\Entities\Gift;
 
 interface GiftServiceInterface
 {
-    public function transferGiftToUser(int $userId, Gift $gift): Gift;
+    public function transferGiftToUser(int $userId, Gift $gift): int;
+    public function getGiftByTransactionId(int $giftTransactionId): Gift;
 
     public function getAvailableGifts(): array;
 }

@@ -4,6 +4,5 @@ namespace Slotegrator\Business\Raffle\ProbabilityGenerator;
 
 interface ProbabilityGeneratorInterface
 {
-
     public function generate(): array;
 }

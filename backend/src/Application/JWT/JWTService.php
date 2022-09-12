@@ -3,6 +3,7 @@
 namespace Slotegrator\Application\JWT;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Slotegrator\Business\JWT\JwtServiceInterface;
 
 class JWTService implements JWTServiceInterface
@@ -24,6 +25,6 @@ class JWTService implements JWTServiceInterface
      */
     public function decode(string $token): array
     {
-        return (array) JWT::decode($token, $this->secret);
+        return (array) JWT::decode($token, new Key($this->secret, $this->algorithm));
     }
 }

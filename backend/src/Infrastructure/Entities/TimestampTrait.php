@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping\Column;
 
 trait TimestampTrait
 {
-    #[Column(type: 'datetime')]
+    #[Column(type: 'datetime', name: 'created_at')]
     private \DateTime $createdAt;
 
-    #[Column(type: 'datetime')]
+    #[Column(type: 'datetime', name: 'updated_at')]
     private \DateTime $updatedAt;
 
     public function getCreatedAt(): \DateTime
@@ -22,13 +22,15 @@ trait TimestampTrait
         return $this->updatedAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 }

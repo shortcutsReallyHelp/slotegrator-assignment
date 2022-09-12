@@ -7,6 +7,6 @@ use Slotegrator\Business\Gift\DTO\WithdrawGift;
 
 interface GiftEntityManagerInterface
 {
-    public function withdrawGift(WithdrawGift $withdrawGift): void;
-    public function add(AddGift $addGift): void;
+    public function withdrawGift(WithdrawGift $withdrawGift): int;
+    public function addToUsersBalance(AddGift $addGift): int;
 }

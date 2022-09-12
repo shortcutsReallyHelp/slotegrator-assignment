@@ -16,4 +16,9 @@ class GiftReader implements GiftReaderInterface
     {
         return $this->giftRepository->getAvailableGifts();
     }
+
+    public function getGiftByTransactionId(int $giftTransactionId): Gift
+    {
+        return $this->giftRepository->getGiftByTransactionId($giftTransactionId);
+    }
 }

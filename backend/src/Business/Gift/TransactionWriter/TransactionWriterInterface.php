@@ -6,5 +6,5 @@ use Slotegrator\Business\Gift\Entities\Gift;
 
 interface TransactionWriterInterface
 {
-    public function transferGiftToUser(int $userId, Gift $gift): Gift;
+    public function transferGiftToUser(int $userId, Gift $gift): int;
 }

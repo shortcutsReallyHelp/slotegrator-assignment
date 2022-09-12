@@ -8,24 +8,6 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
-/*
- * raffles
-- id
-- user_id
-- type
-- ?gift_id
-- ?gift_name
-- ?gift_amount
-- ?money_amount
-- ?money_transaction_id
-- ?bonus_amount
-- ?bonus_transaction_id
-- created_at
-- updated_at
- *
- */
-
 #[Entity, Table(name: 'raffles')]
 class Raffle
 {
@@ -46,6 +28,9 @@ class Raffle
     #[Column(name: 'gift_name', type: 'string', length: 255, nullable: true)]
     private ?string $giftName;
 
+    #[Column(name: 'gift_transaction_id', type: 'integer', nullable: true)]
+    private ?int $giftTransactionId;
+
     #[Column(name: 'gift_amount', type: 'integer', nullable: true)]
     private ?int $giftAmount;
 
@@ -60,6 +45,24 @@ class Raffle
 
     #[Column(name: 'bonus_transaction_id', type: 'integer', nullable: true)]
     private ?int $bonusTransactionId;
+
+    /**
+     * @return int|null
+     */
+    public function getGiftTransactionId(): ?int
+    {
+        return $this->giftTransactionId;
+    }
+
+    /**
+     * @param int|null $giftTransactionId
+     * @return Raffle
+     */
+    public function setGiftTransactionId(?int $giftTransactionId): Raffle
+    {
+        $this->giftTransactionId = $giftTransactionId;
+        return $this;
+    }
 
     /**
      * @return int

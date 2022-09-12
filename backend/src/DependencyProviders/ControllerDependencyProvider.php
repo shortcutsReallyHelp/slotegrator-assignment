@@ -3,8 +3,11 @@
 namespace Slotegrator\DependencyProviders;
 
 use League\Container\Container;
+use Slotegrator\Application\Raffle\CommandHandler\PlayCommandHandler;
+use Slotegrator\Application\Raffle\CommandHandler\PlayCommandHandlerInterface;
 use Slotegrator\Application\SignIn\CommandHandler\SignInCommandHandlerInterface;
 use Slotegrator\Application\SignUp\CommandHandler\SignUpCommandHandlerInterface;
+use Slotegrator\Http\Controllers\RaffleController;
 use Slotegrator\Http\Controllers\SignInController;
 use Slotegrator\Http\Controllers\SignupController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -23,6 +26,9 @@ class ControllerDependencyProvider implements DependencyProviderInterface
         });
         $container->add(SignInController::class, function () use ($container) {
             return new SignInController($container->get(SignInCommandHandlerInterface::class), ...$this->getBasicControllerArguments($container));
+        });
+        $container->add(RaffleController::class, function () use ($container) {
+            return new RaffleController($container->get(PlayCommandHandlerInterface::class), ...$this->getBasicControllerArguments($container));
         });
         return $container;
     }

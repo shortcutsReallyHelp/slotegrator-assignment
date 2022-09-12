@@ -6,12 +6,15 @@ use League\Container\Container;
 use League\Route\Router;
 use Slotegrator\DependencyProviders\AuthServiceDependencyProvider;
 use Slotegrator\DependencyProviders\BodyParserDependencyProvider;
+use Slotegrator\DependencyProviders\BonusTransactionServiceDependencyProvider;
 use Slotegrator\DependencyProviders\ConfigDependencyProvider;
 use Slotegrator\DependencyProviders\ControllerDependencyProvider;
 use Slotegrator\DependencyProviders\DependencyProviderInterface;
 use Slotegrator\DependencyProviders\DoctrineDependencyProvider;
 use Slotegrator\DependencyProviders\DotEnvDependencyProvider;
 use Slotegrator\DependencyProviders\GiftDependencyProvider;
+use Slotegrator\DependencyProviders\MoneyTransactionServiceDependencyProvider;
+use Slotegrator\DependencyProviders\RaffleServiceDependencyProvider;
 use Slotegrator\DependencyProviders\RequestDependencyProvider;
 use Slotegrator\DependencyProviders\ServiceDependencyProvider;
 use Slotegrator\DependencyProviders\TranslatorDependencyProvider;
@@ -40,6 +43,9 @@ class Starter
         AuthServiceDependencyProvider::class,
         UserServiceDependencyProvider::class,
         GiftDependencyProvider::class,
+        RaffleServiceDependencyProvider::class,
+        BonusTransactionServiceDependencyProvider::class,
+        MoneyTransactionServiceDependencyProvider::class,
     ];
 
     /**

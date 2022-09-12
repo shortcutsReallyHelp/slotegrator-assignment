@@ -11,11 +11,9 @@ class TransactionWriter implements TransactionWriterInterface
 {
     public function __construct(private GiftEntityManagerInterface $giftEntityManager){}
 
-    public function transferGiftToUser(int $userId, Gift $gift): Gift
+    public function transferGiftToUser(int $userId, Gift $gift): int
     {
         $this->giftEntityManager->withdrawGift(new WithdrawGift($gift->getId()));
-        $this->giftEntityManager->add(new AddGift($gift->getId(), $userId));
-
-        return $gift;
+        return $this->giftEntityManager->addToUsersBalance(new AddGift($gift->getId(), $userId));
     }
 }

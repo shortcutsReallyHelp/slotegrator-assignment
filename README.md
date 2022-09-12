@@ -1,5 +1,35 @@
 # slotegrator-assignment
 
+## Installation
+
+```bash
+console/install dev
+```
+
+## Destroy (delete volumes and reinstall)
+```bash
+console/destroy
+console/install dev
+```
+
+## Run containers
+```bash
+console/up
+```
+
+## Stop containers
+```bash
+console/down
+```
+
+## Connect to php container
+```bash
+console/cli
+console/cli php backend/console/console.php payments:process 10
+```
+
+
+
 ## Preparation todos
 - [X] Prepare docker for two environments: dev and test
 - [X] Decide which libraries to use
@@ -11,19 +41,18 @@
 - [X] Sign up
 - [X] Authentication
 - [X] Gift
-- [ ] Money
-- [ ] Bonus
-- [ ] Get random 
-- [ ] Send money to users bank accounts
-- [ ] Unit Tests
-- [ ] Seeders and install command
+- [X] Money
+- [X] Bonus
+- [X] Get random
+- [X] Send money to users bank accounts
+- [ ] Unit Tests (only raffle and only stubs without fakers)
+- [X] Seeders and install command
 - [ ] Load testing and fakers
 
-
-- [ ] Frontend (dont have enough time to do it, we have REST and postman collection to test)
+- [ ] wrap with transaction, foreign keys (didn't have enough time to do it unfortunately)
+- [ ] Frontend (we have REST api and postman collection to test)
 - [ ] Add money to programms balance (dont have enough time to do it, instead money will be added to programms balance via seeders)
 - [ ] code sniffer and phpstan (dont have enough time to do it)
-- [ ] foreign keys (dont have enough time to do it)
 
 ## Libraries
 - [X] router

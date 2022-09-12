@@ -10,7 +10,7 @@ class GiftService implements GiftServiceInterface
 {
     public function __construct(private GiftReaderInterface $giftReader, private TransactionWriter $transactionWriter){}
 
-    public function transferGiftToUser(int $userId, Gift $gift): Gift
+    public function transferGiftToUser(int $userId, Gift $gift): int
     {
         return $this->transactionWriter->transferGiftToUser($userId, $gift);
     }
@@ -18,5 +18,10 @@ class GiftService implements GiftServiceInterface
     public function getAvailableGifts(): array
     {
         return $this->giftReader->getGifts();
+    }
+
+    public function getGiftByTransactionId(int $giftTransactionId): Gift
+    {
+        return $this->giftReader->getGiftByTransactionId($giftTransactionId);
     }
 }

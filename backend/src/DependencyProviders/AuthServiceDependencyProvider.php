@@ -16,6 +16,7 @@ use Slotegrator\Business\I18n\I18nInterface;
 use Slotegrator\Business\JWT\JwtServiceInterface;
 use Slotegrator\Business\Password\PasswordServiceInterface;
 use Slotegrator\Business\User\UserServiceInterface;
+use Slotegrator\Http\Middlewares\AuthMiddleware;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AuthServiceDependencyProvider implements DependencyProviderInterface
@@ -53,6 +54,11 @@ class AuthServiceDependencyProvider implements DependencyProviderInterface
             return new SignInCommandHandler(
                 $container->get(AuthServiceInterface::class),
                 $container->get(I18nInterface::class)
+            );
+        });
+        $container->add(AuthMiddleware::class, function () use ($container) {
+            return new AuthMiddleware(
+                $container->get(AuthServiceInterface::class)
             );
         });
         return $container;

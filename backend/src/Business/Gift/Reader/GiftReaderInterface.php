@@ -10,4 +10,6 @@ interface GiftReaderInterface
      * @return Gift[]
      */
     public function getGifts(): array;
+
+    public function getGiftByTransactionId(int $giftTransactionId): Gift;
 }

@@ -15,6 +15,9 @@ use Doctrine\Migrations\Tools\Console\Command\SyncMetadataCommand;
 use Doctrine\Migrations\Tools\Console\Command\UpToDateCommand;
 use Doctrine\Migrations\Tools\Console\Command\VersionCommand;
 use League\Container\Container;
+use Slotegrator\Business\MoneyTransaction\MoneyTransactionServiceInterface;
+use Slotegrator\Console\Commands\ProcessPayments;
+use Slotegrator\Console\Commands\Seed;
 
 class ConsoleDependencyProvider implements DependencyProviderInterface
 {
@@ -41,6 +44,9 @@ class ConsoleDependencyProvider implements DependencyProviderInterface
                 new SyncMetadataCommand($container->get(DoctrineDependencyProvider::DOCTRINE_DEPENDENCY_FACTORY)),
                 new VersionCommand($container->get(DoctrineDependencyProvider::DOCTRINE_DEPENDENCY_FACTORY)),
                 new UpToDateCommand($container->get(DoctrineDependencyProvider::DOCTRINE_DEPENDENCY_FACTORY)),
+
+                new ProcessPayments($container->get(MoneyTransactionServiceInterface::class)),
+                new Seed($container),
             ];
         });
 
